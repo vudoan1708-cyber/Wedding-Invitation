@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
+@theme {
+  --color-linen: #f3ece2;
+  --color-linen-deep: #e7dccd;
+  --color-paper: #fbf8f3;
+  --color-paper-edge: #eee6da;
+  --color-gold: #b3986a;
+  --color-gold-soft: #cdb894;
+  --color-ink: #4a4034;
+  --color-ink-soft: #8a7c6c;
+
+  --font-serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  --font-script: var(--font-script), "Parisienne", cursive;
+  --font-sans: var(--font-sans), "Jost", system-ui, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  background-color: var(--color-linen);
+  color: var(--color-ink);
+  font-family: var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* The warm paper ground with a soft daylight wash across the top-left,
+   echoing the photographed invitation suite. */
+.stage-ground {
+  background:
+    radial-gradient(
+      120% 90% at 18% 8%,
+      rgba(255, 252, 245, 0.95) 0%,
+      rgba(247, 240, 230, 0.6) 38%,
+      rgba(231, 220, 205, 0) 72%
+    ),
+    radial-gradient(
+      100% 80% at 85% 100%,
+      rgba(196, 178, 152, 0.35) 0%,
+      rgba(196, 178, 152, 0) 60%
+    ),
+    linear-gradient(160deg, #f6f0e6 0%, #f0e8db 45%, #e6dacb 100%);
+}
+
+/* Slow drifting leaf shadow — the same gesture as the photo's dappled light. */
+.leaf-shadow {
+  position: absolute;
+  inset: -10% -10% auto -10%;
+  height: 70%;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background:
+    radial-gradient(
+      42% 55% at 12% 18%,
+      rgba(140, 122, 96, 0.28) 0%,
+      rgba(140, 122, 96, 0) 70%
+    ),
+    radial-gradient(
+      30% 40% at 30% 6%,
+      rgba(140, 122, 96, 0.22) 0%,
+      rgba(140, 122, 96, 0) 70%
+    ),
+    radial-gradient(
+      26% 34% at 4% 46%,
+      rgba(140, 122, 96, 0.2) 0%,
+      rgba(140, 122, 96, 0) 70%
+    );
+  animation: leaf-drift 22s ease-in-out infinite alternate;
+}
+
+@keyframes leaf-drift {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  to {
+    transform: translate3d(2.5%, 1.5%, 0) rotate(1.6deg) scale(1.05);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Letterpress: the deboss look of the embossed lace border in the reference. */
+.emboss {
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85),
+    0 -1px 1px rgba(120, 104, 82, 0.18);
+}
+
+.paper-card {
+  background:
+    radial-gradient(
+      130% 100% at 50% 0%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(251, 248, 243, 0.6) 45%,
+      rgba(243, 236, 226, 0.5) 100%
+    ),
+    var(--color-paper);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 24px 60px -28px rgba(93, 79, 60, 0.45),
+    0 4px 14px -6px rgba(93, 79, 60, 0.18);
+}
+
+/* Fine deckled-edge speckle so the "paper" is not a flat fill. */
+.paper-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+.rule-gold {
+  background: linear-gradient(
+    90deg,
+    rgba(179, 152, 106, 0) 0%,
+    rgba(179, 152, 106, 0.7) 50%,
+    rgba(179, 152, 106, 0) 100%
+  );
+}
+
+.tracking-wedding {
+  letter-spacing: 0.32em;
+}
+
+.letter-in {
+  animation: letter-in 900ms cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+@keyframes letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaf-shadow,
+  .letter-in {
+    animation: none;
+  }
 }
