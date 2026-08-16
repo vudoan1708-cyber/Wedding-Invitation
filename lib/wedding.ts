@@ -25,6 +25,20 @@ export const wedding = {
     country: "Vietnam",
     line: "Ho Chi Minh City, Vietnam",
   },
+  venue: {
+    name: "Sứ Garden",
+    tagline: "An open-air garden in District 7",
+    street: "1041/62/207 Trần Xuân Soạn",
+    district: "District 7",
+    time: "From five o'clock in the evening",
+    facebook: "https://www.facebook.com/SuGarden.D7/",
+  },
+  gift: {
+    /** Group gifting pot. Entirely optional — see the copy in GiftPot. */
+    url: "https://app.collectionpot.com/pot/3543864?new=true",
+    service: "Collection Pot",
+    host: "app.collectionpot.com",
+  },
   dressCode: {
     label: "Dress Code",
     value: "Smart",
