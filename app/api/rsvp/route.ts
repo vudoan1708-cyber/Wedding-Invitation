@@ -1,5 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { saveRsvp } from "@/lib/db";
+import { notifyRsvp } from "@/lib/notify";
 import type { Attendance } from "@/lib/types";
 
 const MAX_NAME = 80;
@@ -44,12 +45,15 @@ export async function POST(request: Request) {
     typeof data.message === "string" ? data.message.trim().slice(0, MAX_MESSAGE) : "";
 
   try {
-    await saveRsvp({
+    const { rsvp } = await saveRsvp({
       name,
       attendance: attendance as Attendance,
       guests,
       message,
     });
+    // Sent after the response, so a slow mail API never delays the guest — and
+    // notifyRsvp swallows its own errors, so it cannot cost them their reply.
+    after(() => notifyRsvp(rsvp));
     // Deliberately identical whether this created or replaced a reply. Echoing
     // "updated" back would let anyone type a name and learn that this person
     // has already responded — a public decline list with extra steps.
