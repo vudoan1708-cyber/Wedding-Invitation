@@ -7,7 +7,7 @@ export const wedding = {
   },
   bride: {
     firstName: "Nhi",
-    displayName: "Nhi Khanh",
+    displayName: "Nhi Dinh",
     fullName: "Nhi Thi Khanh Dinh",
     initial: "N",
   },

@@ -68,7 +68,7 @@ Nothing is hard-coded in the components.
 Names are modelled as `firstName` (what they go by), `displayName` (the large
 form on the card) and `fullName` (the formal Vietnamese name, shown small
 beneath). Because the guests are largely foreign, `displayName` is Westernised —
-"Vu Doan", "Nhi Khanh" — while `fullName` keeps the Vietnamese order intact.
+"Vu Doan", "Nhi Dinh" — while `fullName` keeps the Vietnamese order intact.
 
 There is deliberately no `firstName` / `lastName` split anywhere. In Vietnamese
 names the given name comes last, so that split mislabels both halves. Guests get
