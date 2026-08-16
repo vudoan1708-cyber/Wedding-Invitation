@@ -10,6 +10,20 @@ import type { Rsvp } from "./types";
 const DEFAULT_FROM = "onboarding@resend.dev";
 const DEFAULT_TO = "vudoan1708@gmail.com";
 
+/**
+ * Absolute URL for the host dashboard. Vercel supplies the production domain at
+ * runtime, so this stays correct without hard-coding it; SITE_URL overrides for
+ * a custom domain.
+ */
+function hostUrl(): string {
+  const base =
+    process.env.SITE_URL?.replace(/\/$/, "") ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000");
+  return `${base}/host`;
+}
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -63,8 +77,10 @@ function buildHtml(rsvp: Rsvp): string {
           ? `<p style="margin:24px 0 0;padding-left:16px;border-left:2px solid #cdb894;font-style:italic;font-size:16px;line-height:1.6;color:#4a4034;">${escapeHtml(rsvp.message)}</p>`
           : ""
       }
-      <p style="margin:32px 0 0;font-size:12px;color:#8a7c6c;">
-        Every reply is listed on the host page.
+      <p style="margin:32px 0 0;text-align:center;">
+        <a href="${hostUrl()}" style="display:inline-block;padding:14px 28px;border:1px solid #b3986a;color:#4a4034;text-decoration:none;font-family:Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;">
+          See all replies
+        </a>
       </p>
     </div>
   </div>`;

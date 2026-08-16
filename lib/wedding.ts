@@ -31,7 +31,7 @@ export const wedding = {
     street: "1041/62/207 Trần Xuân Soạn",
     district: "District 7",
     time: "From five o'clock in the evening",
-    facebook: "https://www.facebook.com/SuGarden.D7/",
+    maps: "https://maps.app.goo.gl/hkXDzBTnq6uXRZSJ6",
   },
   gift: {
     /** Group gifting pot. Entirely optional — see the copy in GiftPot. */

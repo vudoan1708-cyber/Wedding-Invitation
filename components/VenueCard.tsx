@@ -94,26 +94,25 @@ export function VenueCard() {
 
       <div className="mt-6 text-center">
         <a
-          href={venue.facebook}
+          href={venue.maps}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 border-b border-gold/50 pb-1 font-sans text-[0.65rem] tracking-[0.2em] text-ink uppercase transition hover:border-gold hover:text-gold"
         >
-          See the venue
           <svg
             width="11"
-            height="11"
-            viewBox="0 0 14 14"
+            height="13"
+            viewBox="0 0 12 14"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.4"
-            strokeLinecap="round"
+            strokeWidth="1.3"
+            strokeLinejoin="round"
             aria-hidden="true"
           >
-            <path d="M5 2H2v10h10V9" />
-            <path d="M8.5 1.5H12.5V5.5" />
-            <path d="M12.5 1.5L6.5 7.5" />
+            <path d="M6 13c3.2-3.6 5-6.1 5-8A5 5 0 0 0 1 5c0 1.9 1.8 4.4 5 8Z" />
+            <circle cx="6" cy="5" r="1.7" />
           </svg>
+          View on Google Maps
         </a>
       </div>
     </div>
