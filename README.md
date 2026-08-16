@@ -1,6 +1,6 @@
 # Wedding Invitation
 
-An animated online wedding invitation for Vu Trong Doan & Dinh Thi Khanh Nhi —
+An animated online wedding invitation for Vu Trong Doan & Nhi Thi Khanh Dinh —
 20 December 2026, Ho Chi Minh City, Vietnam.
 
 Guests land on a sealed envelope, tap it open, read the letter, and RSVP.
@@ -65,11 +65,14 @@ instances and one reply would be silently lost.
 Names, date, location and dress code all live in [lib/wedding.ts](lib/wedding.ts).
 Nothing is hard-coded in the components.
 
-Names are modelled as `firstName` (what they go by), `firstAndMiddleName` (the
-large display form) and `fullName`. There is deliberately no `firstName` /
-`lastName` split — in Vietnamese names the given name comes last, so that split
-mislabels both halves. Guests get a single "Your full name" field for the same
-reason.
+Names are modelled as `firstName` (what they go by), `displayName` (the large
+form on the card) and `fullName` (the formal Vietnamese name, shown small
+beneath). Because the guests are largely foreign, `displayName` is Westernised —
+"Vu Doan", "Nhi Khanh" — while `fullName` keeps the Vietnamese order intact.
+
+There is deliberately no `firstName` / `lastName` split anywhere. In Vietnamese
+names the given name comes last, so that split mislabels both halves. Guests get
+a single "Your full name" field for the same reason.
 
 ## How RSVP privacy works
 

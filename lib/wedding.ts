@@ -1,14 +1,14 @@
 export const wedding = {
   groom: {
     firstName: "Vu",
-    firstAndMiddleName: "Trong Vu",
+    displayName: "Vu Doan",
     fullName: "Vu Trong Doan",
     initial: "V",
   },
   bride: {
     firstName: "Nhi",
-    firstAndMiddleName: "Khanh Nhi",
-    fullName: "Dinh Thi Khanh Nhi",
+    displayName: "Nhi Khanh",
+    fullName: "Nhi Thi Khanh Dinh",
     initial: "N",
   },
   date: {
@@ -34,4 +34,4 @@ export const wedding = {
 } as const;
 
 export const coupleShort = `${wedding.groom.firstName} & ${wedding.bride.firstName}`;
-export const coupleDisplay = `${wedding.groom.firstAndMiddleName} & ${wedding.bride.firstAndMiddleName}`;
+export const coupleDisplay = `${wedding.groom.displayName} & ${wedding.bride.displayName}`;

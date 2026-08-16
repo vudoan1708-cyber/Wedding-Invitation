@@ -32,7 +32,7 @@ export function InvitationLetter() {
             aria-hidden="true"
             className="emboss font-serif text-5xl leading-tight font-light text-ink sm:text-6xl"
           >
-            {wedding.groom.firstAndMiddleName}
+            {wedding.groom.displayName}
           </p>
           <p className="mt-3 font-sans text-[0.65rem] tracking-[0.3em] text-ink-soft uppercase">
             {wedding.groom.fullName}
@@ -44,7 +44,7 @@ export function InvitationLetter() {
             aria-hidden="true"
             className="emboss font-serif text-5xl leading-tight font-light text-ink sm:text-6xl"
           >
-            {wedding.bride.firstAndMiddleName}
+            {wedding.bride.displayName}
           </p>
           <p className="mt-3 font-sans text-[0.65rem] tracking-[0.3em] text-ink-soft uppercase">
             {wedding.bride.fullName}
@@ -56,7 +56,7 @@ export function InvitationLetter() {
         <p className="text-center font-serif text-lg leading-relaxed text-ink sm:text-xl">
           request the pleasure of your company
           <br />
-          as they exchange their vows
+          at their wedding ceremony
         </p>
 
         <div className="mt-12 flex flex-col items-center gap-10 sm:flex-row sm:items-stretch sm:justify-center sm:gap-0">
