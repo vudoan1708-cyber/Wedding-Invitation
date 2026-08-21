@@ -18,7 +18,7 @@ export function InvitationLetter() {
     <article className="paper-card paper-grain relative w-full max-w-2xl overflow-hidden rounded-xs">
       <OrnateFrame />
 
-      <div className="relative px-7 pt-16 pb-28 sm:px-16 sm:pt-20 sm:pb-32">
+      <div className="stagger relative px-7 pt-16 pb-28 sm:px-16 sm:pt-20 sm:pb-32">
         <header className="text-center">
           <Monogram size={58} />
           <p className="mt-8 font-serif text-base tracking-[0.14em] text-ink-soft">
