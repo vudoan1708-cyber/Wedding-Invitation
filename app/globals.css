@@ -126,9 +126,141 @@ body {
   letter-spacing: 0.32em;
 }
 
+/* ── Entrance intro ─────────────────────────────────────────────────────────
+   A staged reveal: the monogram draws itself, the title rises, the envelope
+   settles onto the page, then the seal presses down. */
+
+.intro-draw path,
+.intro-draw text {
+  stroke-dasharray: var(--dash, 620);
+  stroke-dashoffset: var(--dash, 620);
+  animation: intro-draw 2200ms cubic-bezier(0.65, 0, 0.35, 1) 300ms forwards;
+}
+
+@keyframes intro-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.intro-glow {
+  animation: intro-glow 1400ms ease-out 2000ms both;
+}
+
+@keyframes intro-glow {
+  from {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.55;
+  }
+}
+
+.intro-rise {
+  animation: intro-rise 1100ms cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.envelope-in {
+  animation: envelope-in 1300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes envelope-in {
+  from {
+    opacity: 0;
+    transform: translateY(54px) scale(0.93);
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.seal-press {
+  animation: seal-press 900ms cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+@keyframes seal-press {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.1) rotate(-14deg);
+  }
+  70% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+}
+
+/* Slow drifting petals behind everything. */
+.petal {
+  position: absolute;
+  top: -6%;
+  color: var(--color-gold);
+  opacity: 0;
+  animation: petal-fall linear infinite;
+}
+
+@keyframes petal-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+  }
+  12% {
+    opacity: var(--peak, 0.5);
+  }
+  55% {
+    transform: translate3d(
+        calc(var(--drift, 30px) * 0.55),
+        55vh,
+        0
+      )
+      rotate(calc(var(--spin, 300deg) * 0.55));
+  }
+  85% {
+    opacity: calc(var(--peak, 0.5) * 0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift, 30px), 108vh, 0)
+      rotate(var(--spin, 300deg));
+  }
+}
+
 .letter-in {
   animation: letter-in 900ms cubic-bezier(0.33, 1, 0.68, 1) both;
 }
+
+/* Children of the opened letter arrive in sequence rather than all at once. */
+.stagger > * {
+  animation: intro-rise 800ms cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+/* Offset past the letter's own entrance delay, or the children would finish
+   arriving before the card itself becomes visible. */
+.stagger > *:nth-child(1) { animation-delay: 980ms; }
+.stagger > *:nth-child(2) { animation-delay: 1080ms; }
+.stagger > *:nth-child(3) { animation-delay: 1180ms; }
+.stagger > *:nth-child(4) { animation-delay: 1280ms; }
+.stagger > *:nth-child(5) { animation-delay: 1380ms; }
+.stagger > *:nth-child(n + 6) { animation-delay: 1480ms; }
 
 @keyframes letter-in {
   from {
@@ -143,7 +275,21 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .leaf-shadow,
-  .letter-in {
+  .letter-in,
+  .intro-rise,
+  .envelope-in,
+  .seal-press,
+  .intro-glow,
+  .stagger > *,
+  .intro-draw path,
+  .intro-draw text {
     animation: none;
+  }
+  .intro-draw path,
+  .intro-draw text {
+    stroke-dashoffset: 0;
+  }
+  .petal {
+    display: none;
   }
 }
